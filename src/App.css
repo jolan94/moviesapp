@@ -40,9 +40,9 @@
   outline: none;
   background: black;
   color: yellow;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
-  border-radius: 20px;
+  border-radius: 16px;
   text-align: center;
   box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.4);
   position: relative;
@@ -94,4 +94,13 @@
 
 .like-dislike {
   margin: 15px 0px;
+}
+
+.errorimg {
+  width: 100vw;
+  height: 90vh;
+  margin: auto 0px;
+  text-align: center;
+  justify-content: center;
+  object-fit: cover;
 }

@@ -1,7 +1,28 @@
 import "./App.css";
 import { useState } from "react";
+import { Movie } from "./Movie";
+import { NewMovie } from "./NewMovie";
+import { Contact } from "./Contact";
+import { Error404 } from "./Error404";
+import { NavigationPage } from "./NavigationPage";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
+  return (
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/error" element={<Error404 />} />
+          <Route path="/nav" element={<NavigationPage />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
+}
+
+export function Home() {
   const INITIAL_MOVIE_LIST = [
     {
       name: "Master",
@@ -52,191 +73,13 @@ function App() {
         "Jake, who is paraplegic, replaces his twin on the Na'vi inhabited Pandora for a corporate mission. After the natives accept him as one of their own, he must decide where his loyalties lie.",
     },
   ];
-  const [moviename, setMovieName] = useState("");
-  const [summary, setSummary] = useState("");
-  const [rating, setRating] = useState("");
-  const [poster, setPoster] = useState("");
   const [movielistInside, setMovieList] = useState(INITIAL_MOVIE_LIST);
   return (
     <div className="App">
-      <div className="newmovie">
-        <input
-          type="text"
-          placeholder="Enter Movie Name"
-          className="inputfield"
-          onChange={(e) => setMovieName(e.target.value, console.log(moviename))}
-        ></input>
-        <input
-          type="text"
-          placeholder="Rating (1-10)"
-          className="inputfield"
-          onChange={(e) => setRating(e.target.value)}
-        ></input>
-        <input
-          type="text"
-          placeholder="Summary"
-          className="inputfield"
-          onChange={(e) => setSummary(e.target.value)}
-        ></input>
-        <input
-          type="text"
-          placeholder="Poster URL"
-          className="inputfield"
-          onChange={(e) => setPoster(e.target.value)}
-        ></input>
-        <button
-          className="submitbutton"
-          onClick={() => {
-            const newMovie = {
-              name: moviename,
-              poster: poster,
-              summary: summary,
-              rating: rating,
-            };
-            console.log(newMovie);
-            console.log(
-              "Initaial movie list length " + INITIAL_MOVIE_LIST.length
-            );
-            const updatedMoviesArray = [...movielistInside, newMovie];
-            console.log(
-              "Updated array movie list length " + updatedMoviesArray.length
-            );
-            setMovieList(updatedMoviesArray);
-            console.log("Final movie list length " + updatedMoviesArray.length);
-          }}
-        >
-          {" "}
-          Submit
-        </button>
-      </div>
-      );
+      <NewMovie movlst={movielistInside} setFunc={setMovieList} />
       {movielistInside.map((mve, index) => (
         <Movie movie={mve} key={index} />
       ))}
-    </div>
-  );
-}
-
-function NewMovie(movlist) {
-  // const [moviename, setMovieName] = useState("");
-  // const [summary, setSummary] = useState("");
-  // const [rating, setRating] = useState("");
-  // const [poster, setPoster] = useState("");
-  // const [movielistInside, setMovieList] = useState(movlist);
-  // return (
-  //   <div className="newmovie">
-  //     <input
-  //       type="text"
-  //       placeholder="Enter Movie Name"
-  //       className="inputfield"
-  //       onChange={(e) => setMovieName(e.target.value, console.log(moviename))}
-  //     ></input>
-  //     <input
-  //       type="text"
-  //       placeholder="Rating (1-10)"
-  //       className="inputfield"
-  //       onChange={(e) => setRating(e.target.value)}
-  //     ></input>
-  //     <input
-  //       type="text"
-  //       placeholder="Summary"
-  //       className="inputfield"
-  //       onChange={(e) => setSummary(e.target.value)}
-  //     ></input>
-  //     <input
-  //       type="text"
-  //       placeholder="Poster URL"
-  //       className="inputfield"
-  //       onChange={(e) => setPoster(e.target.value)}
-  //     ></input>
-  //     <button
-  //       className="submitbutton"
-  //       onClick={() => {
-  //         const newMovie = {
-  //           name: moviename,
-  //           poster: poster,
-  //           summary: summary,
-  //           rating: rating,
-  //         };
-  //         console.log(newMovie);
-  //         console.log("movielist movies " + movielistInside);
-  //         setMovieList([...movielistInside, newMovie]);
-  //         console.log("Edited movie List " + movielistInside);
-  //       }}
-  //     >
-  //       {" "}
-  //       Submit
-  //     </button>
-  //   </div>
-  // );
-}
-
-function Movie({ movie }) {
-  const [displayval, setDisplay] = useState(true);
-  const styles = {
-    color: movie.rating > 8 ? "green" : "red",
-  };
-  const style = {
-    color: "black",
-    display: displayval ? "flex" : "none",
-  };
-
-  const textval = displayval ? "Hide" : "More";
-
-  return (
-    <div className="movie-container">
-      <img
-        src={movie.poster}
-        className="poster"
-        placeholder={movie.name}
-        alt=""
-      />
-      <div class="movie-spec">
-        <h3 className="movie-name">
-          {movie.name}{" "}
-          <button
-            className="expand-button"
-            onClick={() => setDisplay(!displayval)}
-          >
-            {textval}
-          </button>
-        </h3>
-        <h4 className="movie-ratings" style={styles}>
-          ⭐ {movie.rating}
-        </h4>
-      </div>
-      <p className="movie-summary" style={style}>
-        {" "}
-        {movie.summary}
-      </p>
-      <Counter />
-    </div>
-  );
-}
-
-function Counter() {
-  const [like, setLike] = useState(0);
-  const [disLike, setDisLike] = useState(0);
-  return (
-    <div className="like-dislike">
-      <button
-        className="button"
-        onClick={() => {
-          setLike(like + 1);
-        }}
-      >
-        {" "}
-        <span>👍 </span>Like {like}
-      </button>
-      <button
-        className="button"
-        onClick={() => {
-          setDisLike(disLike + 1);
-        }}
-      >
-        {" "}
-        <span>👎 </span>Dislike {disLike}
-      </button>
     </div>
   );
 }
