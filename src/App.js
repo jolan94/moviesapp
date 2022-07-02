@@ -54,11 +54,10 @@ function App() {
   ];
   return (
     <div className="App">
-      <PageNavigation />
-      <NewMovie />
-
-      {movielist.map((mve) => (
-        <Movie movie={mve} />
+      {/* <PageNavigation /> */}
+      <NewMovie movielist={movielist} />
+      {movielist.map((mve, index) => (
+        <Movie movie={mve} key={index} />
       ))}
     </div>
   );
@@ -76,41 +75,58 @@ function PageNavigation() {
   );
 }
 
-function NewMovie() {
+function NewMovie(movlist) {
   const [moviename, setMovieName] = useState("");
   const [summary, setSummary] = useState("");
   const [rating, setRating] = useState("");
   const [poster, setPoster] = useState("");
+  const [movielistInside, setMovieList] = useState(movlist);
   return (
     <div className="newmovie">
-      <form>
-        <label>
-          Enter movie name
-          <input
-            type="text"
-            name="movie-name"
-            value={moviename}
-            onChange={(e) =>
-              setMovieName(e.target.value, console.log(moviename))
-            }
-          ></input>
-        </label>
-        <label>
-          Enter movie Summary
-          <input></input>
-        </label>
-        <label>
-          Enter rating
-          <input></input>
-        </label>
-        <label>
-          Enter Poster Url
-          <input></input>
-        </label>
-        <label>
-          <input type="submit"></input>
-        </label>
-      </form>
+      <input
+        type="text"
+        placeholder="Enter Movie Name"
+        className="inputfield"
+        onChange={(e) => setMovieName(e.target.value, console.log(moviename))}
+      ></input>
+
+      <input
+        type="text"
+        placeholder="Rating (1-10)"
+        className="inputfield"
+        onChange={(e) => setRating(e.target.value)}
+      ></input>
+      <input
+        type="text"
+        placeholder="Summary"
+        className="inputfield"
+        onChange={(e) => setSummary(e.target.value)}
+      ></input>
+      <input
+        type="text"
+        placeholder="Poster URL"
+        className="inputfield"
+        onChange={(e) => setPoster(e.target.value)}
+      ></input>
+      <button
+        className="submitbutton"
+        onClick={() => {
+          const newMovie = {
+            name: moviename,
+            poster: poster,
+            summary: summary,
+            rating: rating,
+          };
+
+          console.log(newMovie);
+
+          setMovieList([...movielistInside, newMovie]);
+          console.log("Edited movie List " + movielistInside);
+        }}
+      >
+        {" "}
+        Submit
+      </button>
     </div>
   );
 }
