@@ -36,3 +36,73 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+  display: flex;
+}
+
+.poster {
+  height: 400px;
+  width: 300px;
+
+  object-fit: cover;
+}
+
+.button {
+  border-radius: 10px;
+  border: none;
+  padding: 5px 10px;
+  margin: 5px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.expand-button {
+  border: none;
+  background-color: lightsalmon;
+  padding: 5px 15px;
+  border-radius: 5px;
+}
+
+.movie-container {
+  background-color: #f9f9f9;
+  display: block;
+  width: 300px;
+  margin: 20px;
+}
+
+.movie-spec {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.movie-name {
+  margin: 10px 5px;
+}
+
+.movie-ratings {
+  margin: 10px 5px;
+}
+
+.movie-summary {
+  text-align: justify;
+  margin: 5px;
+}
+
+.like-dislike {
+  margin: 15px 0px;
+}
+
+
+.newmovie{
+  background-color: dodgerblue;
+  height: 100px;
+  width: 1000px;
+  display: inline;
+}
