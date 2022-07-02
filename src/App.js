@@ -15,6 +15,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/error" element={<Error404 />} />
+          <Route path="*" element={<Error404 />} />
           <Route path="/nav" element={<NavigationPage />} />
         </Routes>
       </BrowserRouter>
