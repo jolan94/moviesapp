@@ -1,28 +1,40 @@
 import { useState } from "react";
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import ThumbDownIcon from "@mui/icons-material/ThumbDown";
+import Button from "@mui/material/Button";
 
 export function Counter() {
   const [like, setLike] = useState(0);
   const [disLike, setDisLike] = useState(0);
   return (
     <div className="like-dislike">
-      <button
+      <Button
         className="button"
+        variant="contained"
+        startIcon={<ThumbUpIcon />}
+        size="small"
+        sx={{ ml: 2, mr: 2 }}
+        color="primary"
         onClick={() => {
           setLike(like + 1);
         }}
       >
-        {" "}
-        <span>👍 </span>Like {like}
-      </button>
-      <button
+        Like {like}
+      </Button>
+
+      <Button
         className="button"
+        variant="contained"
+        startIcon={<ThumbDownIcon />}
+        size="small"
+        sx={{ ml: 2, mr: 2 }}
+        color="secondary"
         onClick={() => {
           setDisLike(disLike + 1);
         }}
       >
-        {" "}
-        <span>👎 </span>Dislike {disLike}
-      </button>
+        Dislike {disLike}
+      </Button>
     </div>
   );
 }

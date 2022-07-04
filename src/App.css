@@ -1,10 +1,13 @@
 .App {
+  font-family: sans-serif;
+}
+
+.MoviesList {
+  margin: auto;
+  justify-content: center;
   background-color: aliceblue;
   display: flex;
   flex-wrap: wrap;
-  font-family: sans-serif;
-  margin: auto;
-  justify-content: center;
 }
 
 .movie-container {
@@ -18,7 +21,17 @@
   padding: auto;
   text-align: center;
   justify-content: center;
-  background-color: darkslategrey;
+  background-color: white;
+  display: block;
+}
+
+.newmovieentry {
+  width: 80%;
+  margin: 3% auto;
+  padding: auto;
+  text-align: center;
+  justify-content: center;
+  background-color: white;
   display: block;
 }
 
@@ -31,25 +44,6 @@
   width: 250px;
 }
 
-.submitbutton {
-  display: inline-block;
-  margin: 10px 60px;
-  width: 130px;
-  height: 40px;
-  border: none;
-  outline: none;
-  background: black;
-  color: yellow;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 16px;
-  text-align: center;
-  box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.4);
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-}
-
 .poster {
   height: 400px;
   width: 300px;
@@ -57,39 +51,50 @@
 }
 
 .button {
-  border-radius: 10px;
-  border: none;
-  padding: 5px 10px;
-  margin: 5px;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-weight: bold;
-  font-size: 14px;
+  margin: 15px;
 }
 
 .expand-button {
   border: none;
-  background-color: lightsalmon;
-  padding: 5px 15px;
-  border-radius: 5px;
+  background-color: white;
+  margin: auto 3px;
 }
 
 .movie-spec {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.movie-name {
-  margin: 10px 5px;
-}
-
-.movie-ratings {
-  margin: 10px 5px;
+  text-align: center;
 }
 
 .movie-summary {
   text-align: justify;
   margin: 5px;
+}
+
+.movie-detail-spec {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  margin: 10px 20%;
+}
+
+.movie-detail-summary {
+  text-align: justify;
+  margin: 10px 20%;
+}
+
+.movie-name {
+  margin: 10px 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.movie-ratings {
+  margin: 10px 5px;
 }
 
 .like-dislike {
