@@ -4,6 +4,10 @@ import { Counter } from "./Counter";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import InfoIcon from "@mui/icons-material/Info";
+import IconButton from "@mui/material/IconButton";
+import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
 
 export function Movie({ movie, id }) {
   const [displayval, setDisplay] = useState(true);
@@ -16,49 +20,54 @@ export function Movie({ movie, id }) {
   };
 
   const iconVal = displayval ? (
-    <ArrowDropUpIcon color="secondary" fontSize="large" />
+    <ArrowDropUpIcon color="primary" fontSize="large" />
   ) : (
-    <ArrowDropDownIcon color="secondary" fontSize="large" />
+    <ArrowDropDownIcon color="primary" fontSize="large" />
   );
 
   const navigate = useNavigate();
 
   return (
-    <div className="movie-container">
+    <Card className="movie-container">
       <img
         src={movie.poster}
         className="poster"
         placeholder={movie.name}
         alt=""
       />
-      <div class="movie-spec">
-        <h3 className="movie-name">
-          {movie.name}{" "}
-          <button
-            className="expand-button"
-            onClick={() => {
-              navigate("/movies/" + id);
-              console.log("/movies/" + id);
-            }}
-          >
-            <InfoIcon color="primary" fontSize="small" />
-          </button>
-          <button
-            className="expand-button"
-            onClick={() => setDisplay(!displayval)}
-          >
-            {iconVal}
-          </button>
-        </h3>
-        <h4 className="movie-ratings" style={styles}>
-          ⭐ {movie.rating}
-        </h4>
-      </div>
-      <p className="movie-summary" style={style}>
-        {" "}
-        {movie.summary}
-      </p>
+      <CardContent>
+        <div class="movie-spec">
+          <h3 className="movie-name">
+            {movie.name}{" "}
+            <IconButton
+              color="primary"
+              aria-label="Info view"
+              onClick={() => {
+                navigate("/movies/" + id);
+                console.log("/movies/" + id);
+              }}
+            >
+              <InfoIcon />
+            </IconButton>
+            <IconButton
+              color="primary"
+              aria-label="Expand Description"
+              onClick={() => setDisplay(!displayval)}
+            >
+              {iconVal}
+            </IconButton>
+          </h3>
+          <h4 className="movie-ratings" style={styles}>
+            ⭐ {movie.rating}
+          </h4>
+        </div>
+        <p className="movie-summary" style={style}>
+          {" "}
+          {movie.summary}
+        </p>
+      </CardContent>
+
       <Counter />
-    </div>
+    </Card>
   );
 }

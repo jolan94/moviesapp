@@ -1,40 +1,38 @@
 import { useState } from "react";
-import ThumbUpIcon from "@mui/icons-material/ThumbUp";
-import ThumbDownIcon from "@mui/icons-material/ThumbDown";
-import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import Badge from "@mui/material/Badge";
+import CardActions from "@mui/material/CardActions";
 
 export function Counter() {
   const [like, setLike] = useState(0);
   const [disLike, setDisLike] = useState(0);
   return (
     <div className="like-dislike">
-      <Button
-        className="button"
-        variant="contained"
-        startIcon={<ThumbUpIcon />}
-        size="small"
-        sx={{ ml: 2, mr: 2 }}
-        color="primary"
-        onClick={() => {
-          setLike(like + 1);
-        }}
-      >
-        Like {like}
-      </Button>
+      <CardActions>
+        <IconButton
+          color="primary"
+          aria-label="like"
+          onClick={() => {
+            setLike(like + 1);
+          }}
+        >
+          <Badge badgeContent={like} color="primary">
+            👍
+          </Badge>
+        </IconButton>
 
-      <Button
-        className="button"
-        variant="contained"
-        startIcon={<ThumbDownIcon />}
-        size="small"
-        sx={{ ml: 2, mr: 2 }}
-        color="secondary"
-        onClick={() => {
-          setDisLike(disLike + 1);
-        }}
-      >
-        Dislike {disLike}
-      </Button>
+        <IconButton
+          color="primary"
+          aria-label="like"
+          onClick={() => {
+            setDisLike(disLike + 1);
+          }}
+        >
+          <Badge badgeContent={disLike} color="error">
+            👎
+          </Badge>
+        </IconButton>
+      </CardActions>
     </div>
   );
 }
