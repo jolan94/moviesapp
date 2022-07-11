@@ -8,6 +8,7 @@ import IconButton from "@mui/material/IconButton";
 import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
 
 export function Movie({ movie, id }) {
   const [displayval, setDisplay] = useState(true);
@@ -15,7 +16,6 @@ export function Movie({ movie, id }) {
     color: movie.rating > 8 ? "green" : "red",
   };
   const style = {
-    color: "black",
     display: displayval ? "flex" : "none",
   };
 
@@ -36,37 +36,37 @@ export function Movie({ movie, id }) {
         alt=""
       />
       <CardContent>
-        <div class="movie-spec">
-          <h3 className="movie-name">
-            {movie.name}{" "}
-            <IconButton
-              color="primary"
-              aria-label="Info view"
-              onClick={() => {
-                navigate("/movies/" + id);
-                console.log("/movies/" + id);
-              }}
-            >
-              <InfoIcon />
-            </IconButton>
-            <IconButton
-              color="primary"
-              aria-label="Expand Description"
-              onClick={() => setDisplay(!displayval)}
-            >
-              {iconVal}
-            </IconButton>
-          </h3>
-          <h4 className="movie-ratings" style={styles}>
-            ⭐ {movie.rating}
-          </h4>
+        <div>
+          <div class="movie-spec">
+            <h3 className="movie-name">
+              {movie.name}{" "}
+              <IconButton
+                color="primary"
+                aria-label="Info view"
+                onClick={() => {
+                  navigate("/movies/" + id);
+                  console.log("/movies/" + id);
+                }}
+              >
+                <InfoIcon />
+              </IconButton>
+              <IconButton
+                color="primary"
+                aria-label="Expand Description"
+                onClick={() => setDisplay(!displayval)}
+              >
+                {iconVal}
+              </IconButton>
+            </h3>
+            <h4 className="movie-ratings" style={styles}>
+              ⭐ {movie.rating}
+            </h4>
+          </div>
+          <Typography style={style} variant="body2" color="text.primary">
+            {movie.summary}
+          </Typography>
         </div>
-        <p className="movie-summary" style={style}>
-          {" "}
-          {movie.summary}
-        </p>
       </CardContent>
-
       <Counter />
     </Card>
   );

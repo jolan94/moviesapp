@@ -13,8 +13,6 @@ export function AddMovie(movlist, setFunc) {
 
   return (
     <div className="newmovie">
-      <NavigationPage />
-
       <div className="newmovieentry">
         <TextField
           fullWidth

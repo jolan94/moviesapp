@@ -5,13 +5,15 @@ import App from "./App";
 import { Contact } from "./Contact";
 import { NavigationPage } from "./NavigationPage";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter as Routes, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Switch } from "react-router-dom";
 import { Error404 } from "./Error404";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>
 );
 

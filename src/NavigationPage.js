@@ -6,72 +6,16 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { useContext, themeCtx } from "react";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
 
-export function NavigationPage() {
-  const navigate = useNavigate();
-  return (
-    <div>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          ></IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Movies
-          </Typography>
-          <Button
-            color="inherit"
-            onClick={() => {
-              navigate("/movies");
-            }}
-          >
-            Home
-          </Button>
-          <Button
-            color="inherit"
-            onClick={() => {
-              navigate("/addmovie");
-            }}
-          >
-            Add Movie
-          </Button>
-          <Button
-            color="inherit"
-            onClick={() => {
-              navigate("/contact");
-            }}
-          >
-            Contact
-          </Button>
-          <Button
-            color="inherit"
-            onClick={() => {
-              navigate("/error");
-            }}
-          >
-            Error
-          </Button>
-        </Toolbar>
-      </AppBar>
-      {/* Navigation list Items below
-      <ul>
-        <li>
-          <Link to="/movies">Home</Link>
-        </li>
-        <li>
-          <Link to="/addmovie">Add Movie</Link>
-        </li>
-        <li>
-          <Link to="/error">Error</Link>
-        </li>
-        <li>
-          <Link to="/contact">Contact</Link>
-        </li>
-      </ul> */}
-    </div>
-  );
+export function NavigationPage(props) {
+  // const navigate = useNavigate();
+
+  // console.log(useState(themeCtx));
+  // const [mode, setMode] = useContext(themeCtx);
+
+  // const buttonValue = mode === "light" ? "dark" : "light";
+  return <div></div>;
 }

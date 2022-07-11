@@ -1,20 +1,26 @@
 import "./App.css";
-import { useState } from "react";
+import { createContext, useState } from "react";
 import { AddMovie, NewMovie } from "./AddMovie";
 import { Contact } from "./Contact";
 import { Error404 } from "./Error404";
-import { NavigationPage } from "./NavigationPage";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { MovieDetails } from "./MovieDetails";
+import { Movies } from "./Movies";
+import Paper from "@mui/material/Paper";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import { Movies } from "./Movies";
+import { NavigationPage } from "./NavigationPage";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
+import { useTheme, ThemeProvider, createTheme } from "@mui/material/styles";
+
+const themeCtx = createContext();
 
 function App() {
+  const navigate = useNavigate();
   const INITIAL_MOVIE_LIST = [
     {
       name: "Master",
@@ -73,31 +79,92 @@ function App() {
     },
   ];
   const [movielistInside, setMovieList] = useState(INITIAL_MOVIE_LIST);
+  const [mode, setMode] = useState("dark");
+  const theme = createTheme({
+    palette: {
+      mode: mode,
+    },
+  });
 
-  // const navigate = useNavigate();
   return (
-    <div>
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={<Movies movlst={movielistInside} movFunc={setMovieList} />}
-          />
-          <Route path="/addmovie" element={<AddMovie />} />
-          <Route
-            path="/movies/:id"
-            element={<MovieDetails movlst={movielistInside} />}
-          />
-          <Route
-            path="/movies"
-            element={<Movies movlst={movielistInside} movFunc={setMovieList} />}
-          />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/error" element={<Error404 />} />
-          <Route path="*" element={<Error404 />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Paper style={{ borderRadius: "0px", minHeight: "100vh" }} elevation={10}>
+        <div>
+          <AppBar position="static">
+            <Toolbar>
+              <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                sx={{ mr: 2 }}
+              ></IconButton>
+              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                Movies
+              </Typography>
+              <Button
+                color="inherit"
+                onClick={() => {
+                  navigate("/");
+                }}
+              >
+                Home
+              </Button>
+              <Button
+                color="inherit"
+                onClick={() => {
+                  navigate("/addmovie");
+                }}
+              >
+                Add Movie
+              </Button>
+              <Button
+                color="inherit"
+                onClick={() => {
+                  navigate("/contact");
+                }}
+              >
+                Contact
+              </Button>
+              <Button
+                color="inherit"
+                onClick={() => {
+                  navigate("/error");
+                }}
+              >
+                Error
+              </Button>
+              <Button
+                startIcon={
+                  mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />
+                }
+                color="inherit"
+                onClick={() => setMode(mode === "light" ? "dark" : "light")}
+              >
+                {mode === "dark" ? "Light Mode" : "Dark Mode"}
+              </Button>
+            </Toolbar>
+          </AppBar>
+
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Movies movlst={movielistInside} movFunc={setMovieList} />
+              }
+            />
+            <Route path="/addmovie" element={<AddMovie />} />
+            <Route
+              path="/movies/:id"
+              element={<MovieDetails movlst={movielistInside} />}
+            />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/error" element={<Error404 />} />
+            <Route path="*" element={<Error404 />} />
+          </Routes>
+        </div>
+      </Paper>
+    </ThemeProvider>
   );
 }
 

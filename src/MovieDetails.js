@@ -16,7 +16,6 @@ export function MovieDetails({ movlst }) {
 
   return (
     <div className="moviedetail-container">
-      <NavigationPage />
       <iframe
         width="100%"
         height="720"
