@@ -44,8 +44,8 @@ export function Movie({ movie, id }) {
                 color="primary"
                 aria-label="Info view"
                 onClick={() => {
-                  navigate("/movies/" + id);
-                  console.log("/movies/" + id);
+                  navigate("/movies/" + movie.id);
+                  console.log("/movies/" + movie.id);
                 }}
               >
                 <InfoIcon />

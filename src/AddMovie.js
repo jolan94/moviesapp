@@ -11,6 +11,15 @@ export function AddMovie(movlist, setFunc) {
   const [poster, setPoster] = useState("");
   const [trailer, setTrailer] = useState("");
 
+  // const movieValidationSchema = yup.object({
+  //   name: name.string().required(),
+  //   poster: poster.string().min(4).required,
+  //   rating: rating.number().integer().nullable(true).min(0).max(10).required(),
+  //   summary: summary.string().min(20).required(),
+  //   trailer: trailer.string().min(4).required()
+
+  // })
+
   return (
     <div className="newmovie">
       <div className="newmovieentry">
